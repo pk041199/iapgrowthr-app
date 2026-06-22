@@ -1,11 +1,14 @@
 {
   "name": "IAP Growth and BP Calculator",
   "short_name": "IAP GBcalc",
+  "description": "Pediatric Growth, BMI, Waist Circumference and Blood Pressure Percentile Calculator based on Indian Academy of Pediatrics reference standards.",
   "version": "1.0.0",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1976D2",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
