@@ -1,6 +1,6 @@
 {
   "name": "IAP Growth and BP Calculator",
-  "short_name": "IAP GBcalc"
+  "short_name": "IAP GBcalc",
   "version": "1.0.0",
   "start_url": "./",
   "display": "standalone",
