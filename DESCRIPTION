@@ -1,0 +1,28 @@
+Package: iapgrowthr
+Type: Package
+Title: Indian Pediatric Anthropometry Percentiles and Z Scores
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Praveen",
+           family = "Kumar",
+           role = c("aut", "cre"),
+           email = "human.pk04@gmail.com")
+Description: Scaffold for an R package that computes percentiles and z scores
+    for Indian pediatric anthropometric and blood pressure references using LMS
+    style reference tables. Developed by the Epipulse Team.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: 
+    R (>= 4.1.0)
+Imports:
+    graphics,
+    grDevices,
+    stats,
+    utils
+Suggests:
+    shiny,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
