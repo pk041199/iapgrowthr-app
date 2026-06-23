@@ -134,7 +134,8 @@ plot_single_measure <- function(ref_data,
       x = as.numeric(observations$age),
       y = as.numeric(observations$value),
       pch = 16,
-      col = "#1f3a5f"
+      col = "red",
+      cex = 2
     )
     graphics::lines(
       x = as.numeric(observations$age),
@@ -200,4 +201,96 @@ sex_label <- function(sex) {
   }
 
   "Girls"
+}
+
+plot_bp_percentile_chart <- function(bp_ref,
+                                     sex,
+                                     measure = "sbp",
+                                     age,
+                                     height_pct,
+                                     value) {
+  
+  sex <- tolower(sex)
+  
+  bp_data <- bp_ref[bp_ref$gender == sex, ]
+  
+  ht_band <- c(5,10,25,50,75,90,95)
+  
+  nearest_ht <- ht_band[
+    which.min(abs(ht_band - height_pct))
+  ]
+  
+  col_name <- paste0(measure, "_ht", nearest_ht)
+  
+  p90 <- bp_data[
+    bp_data$bp_percentile == 90,
+    c("age", col_name)
+  ]
+  
+  p95 <- bp_data[
+    bp_data$bp_percentile == 95,
+    c("age", col_name)
+  ]
+  
+  p99 <- bp_data[
+    bp_data$bp_percentile == 99,
+    c("age", col_name)
+  ]
+  
+  names(p90)[2] <- "p90"
+  names(p95)[2] <- "p95"
+  names(p99)[2] <- "p99"
+  
+  plot_df <- Reduce(
+    merge,
+    list(p90, p95, p99)
+  )
+  
+  library(ggplot2)
+  
+  ggplot(plot_df, aes(age)) +
+    
+    geom_line(
+      aes(y = p90, colour = "90th Percentile"),
+      linewidth = 1
+    ) +
+    
+    geom_line(
+      aes(y = p95, colour = "95th Percentile"),
+      linewidth = 1
+    ) +
+    
+    geom_line(
+      aes(y = p99, colour = "99th Percentile"),
+      linewidth = 1
+    ) +
+    
+    geom_point(
+      data = data.frame(
+        age = age,
+        bp = value
+      ),
+      aes(
+        x = age,
+        y = bp
+      ),
+      colour = "red",
+      size = 4
+    ) +
+    
+    labs(
+      title = paste(
+        toupper(measure),
+        "Percentile Chart"
+      ),
+      subtitle = paste(
+        "Height percentile:",
+        nearest_ht
+      ),
+      x = "Age (years)",
+      y = "Blood Pressure (mmHg)",
+      colour = "Threshold"
+    ) +
+    
+    theme_minimal()
 }
