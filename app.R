@@ -26,7 +26,89 @@ measure_fields <- c(
 )
 
 ui <- fluidPage(
-  titlePanel("iapgrowthr Shiny App"),
+  ui <- fluidPage(
+    
+    
+    
+    tags$head(
+      
+      
+      
+      tags$title("IAP Growth & BP Calculator v1.0.0"),
+      
+      
+      
+      tags$meta(
+        
+        name = "description",
+        
+        content = "Pediatric Growth, BMI, Waist Circumference and Blood Pressure Percentile Calculator based on Indian Academy of Pediatrics reference standards."
+        
+      ),
+      
+      
+      
+      tags$meta(
+        
+        name = "theme-color",
+        
+        content = "#1976D2"
+        
+      ),
+      
+      
+      
+      tags$link(
+        
+        rel = "manifest",
+        
+        href = "manifest.json"
+        
+      ),
+      
+      
+      
+      tags$link(
+        
+        rel = "icon",
+        
+        type = "image/png",
+        
+        sizes = "192x192",
+        
+        href = "icon-192.png"
+        
+      ),
+      
+      
+      
+      tags$link(
+        
+        rel = "icon",
+        
+        type = "image/png",
+        
+        sizes = "512x512",
+        
+        href = "icon-512.png"
+        
+      ),
+      
+      
+      
+      tags$link(
+        
+        rel = "apple-touch-icon",
+        
+        href = "icon-192.png"
+        
+      )
+      
+    ),
+    
+    
+    
+    titlePanel("IAP Growth & BP Calculator") ,
   tabsetPanel(
     tabPanel(
       "Single Record",
@@ -100,7 +182,7 @@ ui <- fluidPage(
     )
   )
 )
-
+)
 build_mapping_controls <- function(column_names) {
   choices <- c("-- Ignore --" = "", stats::setNames(column_names, column_names))
 
